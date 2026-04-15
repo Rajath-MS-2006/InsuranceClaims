@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">InsuranceClaimsSim</string>
-    <string name="title_patient">Patient</string>
-    <string name="title_hospital">Hospital</string>
-    <string name="title_insurance">Insurance</string>
-    <string name="title_login">Login</string>
-</resources>
