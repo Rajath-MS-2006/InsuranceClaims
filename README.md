@@ -1,5 +1,9 @@
 # Explainable Offline Health Insurance Claim Adjudication System
 
+[![CD Pipeline - Docker Push](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/docker-push.yml/badge.svg)](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/docker-push.yml)
+[![Setup for Render deployment](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/render-deploy.yml/badge.svg)](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/render-deploy.yml)
+[![Fix tests](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/fix-tests.yml/badge.svg)](https://github.com/Rajath-MS-2006/InsuranceClaims/actions/workflows/fix-tests.yml)
+
 ## Research Novelty 🧠
 
 This system represents a major step towards **Explainable AI (XAI)** in deterministic financial and medical domains. The novelty is grounded in three pillars:
@@ -54,3 +58,19 @@ You can run simulated evaluation accuracy tests using the `eval/` toolkit to see
 ```bash
 python eval/metric_runner.py
 ```
+
+## CI/CD Workflow 🚀
+
+This project is configured with GitHub Actions for automated testing and deployment:
+
+1.  **CD Pipeline - Docker Push**: Builds a production-ready Docker image and pushes it to Docker Hub on every push to `main`.
+2.  **Render Deployment**: Automatically builds the frontend and triggers a backend redeploy to Render on every push to `main`.
+3.  **Comprehensive Testing**: Runs unit tests for both FastAPI (backend) and React/Vitest (frontend) on every pull request and push, generating coverage reports.
+
+### Configuration
+
+To enable these workflows, add the following secrets to your GitHub repository:
+- `DOCKER_USERNAME`: Docker Hub username.
+- `DOCKER_PASSWORD`: Docker Hub password/token.
+- `RENDER_API_KEY`: Render API Key.
+- `RENDER_SERVICE_ID`: Render Service ID.

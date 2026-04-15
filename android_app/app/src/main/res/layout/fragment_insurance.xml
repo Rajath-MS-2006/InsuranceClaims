@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_bg"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insurance Policy Hub"
+        android:textColor="@color/neon_pink"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Paste Policy Text or Rules"
+        app:boxBackgroundColor="@color/glass_bg"
+        app:hintTextColor="@color/neon_pink"
+        app:boxStrokeColor="@color/neon_pink">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_policy_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_parse_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parse &amp; Sync Policy"
+        android:backgroundTint="@color/neon_pink"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

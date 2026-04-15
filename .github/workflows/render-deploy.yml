@@ -1,0 +1,54 @@
+name: "Setup for Render deployment"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Detect and Install Backend Dependencies
+      - name: Set up Python
+        if: hashFiles('requirements.txt') != '' || hashFiles('backend/requirements.txt') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Backend Dependencies
+        if: hashFiles('requirements.txt') != ''
+        run: pip install -r requirements.txt
+
+      # Detect and Install Frontend Dependencies
+      - name: Set up Node.js
+        if: hashFiles('frontend/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        if: hashFiles('frontend/package.json') != ''
+        run: |
+          cd frontend
+          npm ci
+
+      # Build Frontend (Optimized)
+      - name: Build Frontend
+        if: hashFiles('frontend/package.json') != ''
+        run: |
+          cd frontend
+          npm run build
+
+      # Deploy to Render using API
+      - name: Trigger Render Deployment
+        run: |
+          curl -X POST https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Accept: application/json"

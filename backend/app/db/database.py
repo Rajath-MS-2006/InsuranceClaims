@@ -26,13 +26,13 @@ class User(Base):
 engine = create_engine(SQLITE_URL, connect_args={"check_same_thread": False})
 Base.metadata.create_all(bind=engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-print("✅ SQLite connected (Policies).")
+print("[OK] SQLite connected (Policies).")
 
 # TinyDB for Extracted Documents & Claims
 BILLS_DB_PATH = "./claims_db.json"
 tinydb_client = TinyDB(BILLS_DB_PATH)
 claims_table = tinydb_client.table('claims')
-print("✅ TinyDB connected (Claims).")
+print("[OK] TinyDB connected (Claims).")
 
 def save_rule_to_pg(rule_data):
     try:
